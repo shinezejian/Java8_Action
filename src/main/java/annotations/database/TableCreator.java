@@ -6,63 +6,80 @@ import java.lang.annotation.*;
 import java.lang.reflect.*;
 import java.util.*;
 
+/**
+ * Created by zejian on 2017/5/13.
+ * Blog : http://blog.csdn.net/javazejian [原文地址,请尊重原创]
+ * 运行时注解处理器，构造表创建语句
+ */
 public class TableCreator {
-  public static void main(String[] args) throws Exception {
-    if(args.length < 1) {
-      System.out.println("arguments: annotated classes");
-      System.exit(0);
+
+  public static String createTableSql(String className) throws ClassNotFoundException {
+    Class<?> cl = Class.forName(className);
+    DBTable dbTable = cl.getAnnotation(DBTable.class);
+    //如果没有表注解，直接返回
+    if(dbTable == null) {
+      System.out.println(
+              "No DBTable annotations in class " + className);
+      return null;
     }
-    for(String className : args) {
-      Class<?> cl = Class.forName(className);
-      DBTable dbTable = cl.getAnnotation(DBTable.class);
-      if(dbTable == null) {
-        System.out.println(
-          "No DBTable annotations in class " + className);
-        continue;
+    String tableName = dbTable.name();
+    // If the name is empty, use the Class name:
+    if(tableName.length() < 1)
+      tableName = cl.getName().toUpperCase();
+    List<String> columnDefs = new ArrayList<String>();
+    //通过Class类API获取到所有成员字段
+    for(Field field : cl.getDeclaredFields()) {
+      String columnName = null;
+      //获取字段上的注解
+      Annotation[] anns = field.getDeclaredAnnotations();
+      if(anns.length < 1)
+        continue; // Not a db table column
+
+      //判断注解类型
+      if(anns[0] instanceof SQLInteger) {
+        SQLInteger sInt = (SQLInteger) anns[0];
+        //获取字段对应列名称，如果没有就是使用字段名称替代
+        if(sInt.name().length() < 1)
+          columnName = field.getName().toUpperCase();
+        else
+          columnName = sInt.name();
+        //构建语句
+        columnDefs.add(columnName + " INT" +
+                getConstraints(sInt.constraints()));
       }
-      String tableName = dbTable.name();
-      // If the name is empty, use the Class name:
-      if(tableName.length() < 1)
-        tableName = cl.getName().toUpperCase();
-      List<String> columnDefs = new ArrayList<String>();
-      for(Field field : cl.getDeclaredFields()) {
-        String columnName = null;
-        Annotation[] anns = field.getDeclaredAnnotations();
-        if(anns.length < 1)
-          continue; // Not a db table column
-        if(anns[0] instanceof SQLInteger) {
-          SQLInteger sInt = (SQLInteger) anns[0];
-          // Use field name if name not specified
-          if(sInt.name().length() < 1)
-            columnName = field.getName().toUpperCase();
-          else
-            columnName = sInt.name();
-          columnDefs.add(columnName + " INT" +
-            getConstraints(sInt.constraints()));
-        }
-        if(anns[0] instanceof SQLString) {
-          SQLString sString = (SQLString) anns[0];
-          // Use field name if name not specified.
-          if(sString.name().length() < 1)
-            columnName = field.getName().toUpperCase();
-          else
-            columnName = sString.name();
-          columnDefs.add(columnName + " VARCHAR(" +
-            sString.value() + ")" +
-            getConstraints(sString.constraints()));
-        }
-        StringBuilder createCommand = new StringBuilder(
-          "CREATE TABLE " + tableName + "(");
-        for(String columnDef : columnDefs)
-          createCommand.append("\n    " + columnDef + ",");
-        // Remove trailing comma
-        String tableCreate = createCommand.substring(
-          0, createCommand.length() - 1) + ");";
-        System.out.println("Table Creation SQL for " +
-          className + " is :\n" + tableCreate);
+      //判断String类型
+      if(anns[0] instanceof SQLString) {
+        SQLString sString = (SQLString) anns[0];
+        // Use field name if name not specified.
+        if(sString.name().length() < 1)
+          columnName = field.getName().toUpperCase();
+        else
+          columnName = sString.name();
+        columnDefs.add(columnName + " VARCHAR(" +
+                sString.value() + ")" +
+                getConstraints(sString.constraints()));
       }
+
+
     }
+    //数据库表构建语句
+    StringBuilder createCommand = new StringBuilder(
+            "CREATE TABLE " + tableName + "(");
+    for(String columnDef : columnDefs)
+      createCommand.append("\n    " + columnDef + ",");
+    // Remove trailing comma
+    String tableCreate = createCommand.substring(
+            0, createCommand.length() - 1) + ");";
+
+    return createCommand.toString();
   }
+
+
+    /**
+     * 判断该字段是否有其他约束
+     * @param con
+     * @return
+     */
   private static String getConstraints(Constraints con) {
     String constraints = "";
     if(!con.allowNull())
@@ -73,23 +90,22 @@ public class TableCreator {
       constraints += " UNIQUE";
     return constraints;
   }
-} /* Output:
-Table Creation SQL for annotations.database.Member is :
-CREATE TABLE MEMBER(
-    FIRSTNAME VARCHAR(30));
-Table Creation SQL for annotations.database.Member is :
-CREATE TABLE MEMBER(
-    FIRSTNAME VARCHAR(30),
-    LASTNAME VARCHAR(50));
-Table Creation SQL for annotations.database.Member is :
-CREATE TABLE MEMBER(
-    FIRSTNAME VARCHAR(30),
-    LASTNAME VARCHAR(50),
-    AGE INT);
-Table Creation SQL for annotations.database.Member is :
-CREATE TABLE MEMBER(
-    FIRSTNAME VARCHAR(30),
-    LASTNAME VARCHAR(50),
-    AGE INT,
-    HANDLE VARCHAR(30) PRIMARY KEY);
-*///:~
+
+  public static void main(String[] args) throws Exception {
+    String[] arg={"annotations.database.Member"};
+    for(String className : arg) {
+      System.out.println("Table Creation SQL for " +
+              className + " is :\n" + createTableSql(className));
+    }
+
+    /**
+     * 输出结果：
+     Table Creation SQL for annotations.database.Member is :
+     CREATE TABLE MEMBER(
+     FIRSTNAME VARCHAR(30),
+     LASTNAME VARCHAR(50),
+     AGE INT,
+     HANDLE VARCHAR(30) PRIMARY KEY);
+     */
+  }
+}

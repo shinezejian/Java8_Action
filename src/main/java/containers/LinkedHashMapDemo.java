@@ -10,7 +10,7 @@ public class LinkedHashMapDemo {
       new LinkedHashMap<Integer,String>(
         new CountingMapData(9));
     print(linkedMap);
-    // Least-recently-used order:
+    // Least-recently-used order: true
     linkedMap =
       new LinkedHashMap<Integer,String>(16, 0.75f, true);
     linkedMap.putAll(new CountingMapData(9));

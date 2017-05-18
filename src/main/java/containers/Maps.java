@@ -20,8 +20,8 @@ public class Maps {
     // Producing a Collection of the values:
     printnb("Values: ");
     print(map.values());
-    print(map);
-    print("map.containsKey(11): " + map.containsKey(11));
+    print(map);    print("map.containsKey(11): " + map.containsKey(11));
+
     print("map.get(11): " + map.get(11));
     print("map.containsValue(\"F0\"): "
       + map.containsValue("F0"));
