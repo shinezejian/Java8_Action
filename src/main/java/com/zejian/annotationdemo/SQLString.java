@@ -1,9 +1,6 @@
 package com.zejian.annotationdemo;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * Created by wuzejian on 2017/5/18.
@@ -18,6 +15,5 @@ public @interface SQLString {
 
     //列类型分配的长度，如varchar(30)的30
     int value() default 0;
-
     Constraints constraint() default @Constraints;
 }
