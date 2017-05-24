@@ -2,7 +2,7 @@ package concurrency;//: concurrency/SimplePriorities.java
 // Shows the use of thread priorities.
 import java.util.concurrent.*;
 
-public class SimplePriorities implements Runnable {
+public class  SimplePriorities implements Runnable {
   private int countDown = 5;
   private volatile double d; // No optimization
   private int priority;

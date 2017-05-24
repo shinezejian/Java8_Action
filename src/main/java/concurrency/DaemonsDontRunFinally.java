@@ -1,6 +1,8 @@
 package concurrency;//: concurrency/DaemonsDontRunFinally.java
 // Daemon threads don't run the finally clause
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import static net.mindview.util.Print.*;
 
 class ADaemon implements Runnable {
@@ -12,6 +14,7 @@ class ADaemon implements Runnable {
       print("Exiting via InterruptedException");
     } finally {
       print("This should always run?");
+//      AtomicInteger
     }
   }
 }

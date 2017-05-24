@@ -9,7 +9,8 @@ public class SleepingTask extends LiftOff {
         System.out.print(status());
         // Old-style:
         // Thread.sleep(100);
-        // Java SE5/6-style:
+
+        // Java SE5/6-style:TimeUnit是枚举类型
         TimeUnit.MILLISECONDS.sleep(100);
       }
     } catch(InterruptedException e) {
