@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * ×Ô¶¨ÒåThreadFactory
+ * è‡ªå®šä¹‰ThreadFactory
  * @author Administrator
  *
  */

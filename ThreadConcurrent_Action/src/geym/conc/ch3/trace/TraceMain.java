@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Í¨¹ıTraceThreadPoolExecutor £¬¿ÉÒÔÖªµÀ ÔÚÄÄÀïÌá½»µÄÏß³Ì
+ * é€šè¿‡TraceThreadPoolExecutor ï¼Œå¯ä»¥çŸ¥é“ åœ¨å“ªé‡Œæäº¤çš„çº¿ç¨‹
  * @author Geym
  *
  */
@@ -13,11 +13,11 @@ public class TraceMain {
 
 	public static void main(String[] args) {
 		ThreadPoolExecutor pools=new TraceThreadPoolExecutor(0, Integer.MAX_VALUE,
-                0L, TimeUnit.SECONDS,
-                new SynchronousQueue<Runnable>());
-		
+				0L, TimeUnit.SECONDS,
+				new SynchronousQueue<Runnable>());
+
 		/**
-		 * ´íÎó¶ÑÕ»ÖĞ¿ÉÒÔ¿´µ½ÊÇÔÚÄÄÀïÌá½»µÄÈÎÎñ
+		 * é”™è¯¯å †æ ˆä¸­å¯ä»¥çœ‹åˆ°æ˜¯åœ¨å“ªé‡Œæäº¤çš„ä»»åŠ¡
 		 */
 		for(int i=0;i<5;i++){
 			pools.execute(new DivTask(100,i));

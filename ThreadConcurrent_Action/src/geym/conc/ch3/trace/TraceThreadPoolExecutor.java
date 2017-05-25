@@ -30,16 +30,17 @@ public class TraceThreadPoolExecutor extends ThreadPoolExecutor {
 
 	private Runnable wrap(final Runnable task, final Exception clientStack,
 			String clientThreadName) {
-		return new Runnable() {
-			@Override
-			public void run() {
-				try {
-					task.run();
-				} catch (Exception e) {
-					clientStack.printStackTrace();
-					throw e;
+			return new Runnable() {
+				@Override
+				public void run() {
+					try {
+						task.run();
+					} catch (Exception e) {
+						//保存了提交任务线程的堆栈信息
+						clientStack.printStackTrace();
+						throw e;
+					}
 				}
-			}
-		};
+			};
 	}
 }
