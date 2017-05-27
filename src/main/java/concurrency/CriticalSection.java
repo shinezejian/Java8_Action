@@ -21,8 +21,8 @@ class Pair { // Not thread-safe
   public String toString() {
     return "x: " + x + ", y: " + y;
   }
-  public class PairValuesNotEqualException
-  extends RuntimeException {
+
+  public class PairValuesNotEqualException extends RuntimeException {
     public PairValuesNotEqualException() {
       super("Pair values not equal: " + Pair.this);
     }
@@ -38,8 +38,7 @@ class Pair { // Not thread-safe
 abstract class PairManager {
   AtomicInteger checkCounter = new AtomicInteger(0);
   protected Pair p = new Pair();
-  private List<Pair> storage =
-    Collections.synchronizedList(new ArrayList<Pair>());
+  private List<Pair> storage = Collections.synchronizedList(new ArrayList<Pair>());
   public synchronized Pair getPair() {
     // Make a copy to keep the original safe:
     return new Pair(p.getX(), p.getY());

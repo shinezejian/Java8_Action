@@ -1,8 +1,8 @@
 package geym.conc.ch2.inter;
 
 /**
- * sleepÖĞ¶Ïºó Å×³öÒì³£±»ÖØÖÃÖĞ¶Ï×´Ì¬
- * Èç¹ûÏ£Íûsleepºó¿ÉÒÔÅĞ¶ÏÖĞ¶Ï×´Ì¬£¬Ôò±ØĞëÔÚsleepµÄÒì³£´¦ÀíÖĞ£¬ÔÚÉèÖÃÖĞ¶Ï
+ * sleepä¸­æ–­å æŠ›å‡ºå¼‚å¸¸è¢«é‡ç½®ä¸­æ–­çŠ¶æ€
+ * å¦‚æœå¸Œæœ›sleepåå¯ä»¥åˆ¤æ–­ä¸­æ–­çŠ¶æ€ï¼Œåˆ™å¿…é¡»åœ¨sleepçš„å¼‚å¸¸å¤„ç†ä¸­ï¼Œåœ¨è®¾ç½®ä¸­æ–­
  * @author Administrator
  *
  */
@@ -20,7 +20,7 @@ public class InterruputSleepThread {
 						Thread.sleep(2000);
 					} catch (InterruptedException e) {
 						System.out.println("Interruted When Sleep");
-						//ÉèÖÃÖĞ¶Ï×´Ì¬
+						//è®¾ç½®ä¸­æ–­çŠ¶æ€
 						Thread.currentThread().interrupt();
 					}
 					Thread.yield();

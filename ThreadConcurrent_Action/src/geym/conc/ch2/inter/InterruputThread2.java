@@ -1,8 +1,8 @@
 package geym.conc.ch2.inter;
 
 /**
- * �ж�״̬���Լ�⣬����Ӧ����������Ӧ
- * ���Ӧ�ò���Ӧ�жϣ���T1��Զ�����˳�
+ * 中断状态可以检测，并在应用上作出相应
+ * 如果应用不相应中断，则T1永远不会退出
  * @author Administrator
  *
  */

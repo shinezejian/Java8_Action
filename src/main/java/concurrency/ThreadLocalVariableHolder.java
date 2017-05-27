@@ -30,7 +30,8 @@ public class ThreadLocalVariableHolder {
   public static void increment() {
     value.set(value.get() + 1);
   }
-  public static int get() { return value.get(); }
+  public static int get() { return value.get();}
+
   public static void main(String[] args) throws Exception {
     ExecutorService exec = Executors.newCachedThreadPool();
     for(int i = 0; i < 5; i++)
