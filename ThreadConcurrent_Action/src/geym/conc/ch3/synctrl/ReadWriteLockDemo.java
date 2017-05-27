@@ -13,27 +13,27 @@ public class ReadWriteLockDemo {
 	private static Lock readLock = readWriteLock.readLock();
 	private static Lock writeLock = readWriteLock.writeLock();
 	private int value;
-	
+
 	public Object handleRead(Lock lock) throws InterruptedException{
 		try{
-			lock.lock();				//Ä£Äâ¶Á²Ù×÷
-			Thread.sleep(1000);			//¶Á²Ù×÷µÄºÄÊ±Ô½¶à£¬¶ÁĞ´ËøµÄÓÅÊÆ¾ÍÔ½Ã÷ÏÔ
-			return value;				
+			lock.lock();				//æ¨¡æ‹Ÿè¯»æ“ä½œ
+			Thread.sleep(1000);			//è¯»æ“ä½œçš„è€—æ—¶è¶Šå¤šï¼Œè¯»å†™é”çš„ä¼˜åŠ¿å°±è¶Šæ˜æ˜¾
+			return value;
 		}finally{
-		lock.unlock();
+			lock.unlock();
 		}
 	}
 
 	public void handleWrite(Lock lock,int index) throws InterruptedException{
 		try{
-			lock.lock();				//Ä£ÄâĞ´²Ù×÷
+			lock.lock();				//æ¨¡æ‹Ÿå†™æ“ä½œ
 			Thread.sleep(1000);
 			value=index;
 		}finally{
-		lock.unlock();
+			lock.unlock();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		final ReadWriteLockDemo demo=new ReadWriteLockDemo();
 		Runnable readRunnale=new Runnable() {
@@ -58,13 +58,13 @@ public class ReadWriteLockDemo {
 				}
 			}
 		};
-       
-        for(int i=0;i<18;i++){
-            new Thread(readRunnale).start();
-        }
-        
-        for(int i=18;i<20;i++){
-            new Thread(writeRunnale).start();
-        }	
+
+		for(int i=0;i<18;i++){
+			new Thread(readRunnale).start();
+		}
+
+		for(int i=18;i<20;i++){
+			new Thread(writeRunnale).start();
+		}
 	}
 }

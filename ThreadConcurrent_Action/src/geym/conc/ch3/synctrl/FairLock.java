@@ -8,12 +8,12 @@ public class FairLock implements Runnable {
 	@Override
 	public void run() {
 		while(true){
-		try{
-			fairLock.lock();
-			System.out.println(Thread.currentThread().getName()+" »ñµÃËø");
-		}finally{
-			fairLock.unlock();
-		}
+			try{
+				fairLock.lock();
+				System.out.println(Thread.currentThread().getName()+" è·å¾—é”");
+			}finally{
+				fairLock.unlock();
+			}
 		}
 	}
 

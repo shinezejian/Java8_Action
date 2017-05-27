@@ -28,8 +28,7 @@ class Toaster implements Runnable {
   public void run() {
     try {
       while(!Thread.interrupted()) {
-        TimeUnit.MILLISECONDS.sleep(
-          100 + rand.nextInt(500));
+        TimeUnit.MILLISECONDS.sleep(100 + rand.nextInt(500));
         // Make toast
         Toast t = new Toast(count++);
         print(t);

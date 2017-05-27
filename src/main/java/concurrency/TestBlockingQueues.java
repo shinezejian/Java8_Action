@@ -34,8 +34,7 @@ public class TestBlockingQueues {
     try {
       // Compensate for Windows/Linux difference in the
       // length of the result produced by the Enter key:
-      new BufferedReader(
-        new InputStreamReader(System.in)).readLine();
+      new BufferedReader(new InputStreamReader(System.in)).readLine();
     } catch(IOException e) {
       throw new RuntimeException(e);
     }
@@ -44,8 +43,7 @@ public class TestBlockingQueues {
     print(message);
     getkey();
   }
-  static void
-  test(String msg, BlockingQueue<LiftOff> queue) {
+  static void test(String msg, BlockingQueue<LiftOff> queue) {
     print(msg);
     LiftOffRunner runner = new LiftOffRunner(queue);
     Thread t = new Thread(runner);

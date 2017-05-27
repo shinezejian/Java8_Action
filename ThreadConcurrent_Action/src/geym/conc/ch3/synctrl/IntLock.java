@@ -7,7 +7,7 @@ public class IntLock implements Runnable {
 	public static ReentrantLock lock2 = new ReentrantLock();
 	int lock;
 	/**
-	 * ¿ØÖÆ¼ÓËøË³Ğò£¬·½±ã¹¹ÔìËÀËø
+	 * æ§åˆ¶åŠ é”é¡ºåºï¼Œæ–¹ä¾¿æ„é€ æ­»é”
 	 * @param lock
 	 */
 	public IntLock(int lock) {
@@ -38,7 +38,7 @@ public class IntLock implements Runnable {
 				lock1.unlock();
 			if (lock2.isHeldByCurrentThread())
 				lock2.unlock();
-			System.out.println(Thread.currentThread().getId()+":Ïß³ÌÍË³ö");
+			System.out.println(Thread.currentThread().getId()+":çº¿ç¨‹é€€å‡º");
 		}
 	}
 
@@ -49,7 +49,7 @@ public class IntLock implements Runnable {
 		Thread t2 = new Thread(r2);
 		t1.start();t2.start();
 		Thread.sleep(1000);
-		//ÖĞ¶ÏÆäÖĞÒ»¸öÏß³Ì
+		//ä¸­æ–­å…¶ä¸­ä¸€ä¸ªçº¿ç¨‹
 		t2.interrupt();
 	}
 }

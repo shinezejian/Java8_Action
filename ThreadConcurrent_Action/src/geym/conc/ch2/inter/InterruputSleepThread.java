@@ -11,6 +11,7 @@ public class InterruputSleepThread {
 		Thread t1=new Thread(){
 			@Override
 			public void run(){
+				//try在while中，通过异常中断就无法退出run循环，可以通过设置中断状态和判断退出
 				while(true){
 					if(Thread.currentThread().isInterrupted()){
 						System.out.println("Interruted!");

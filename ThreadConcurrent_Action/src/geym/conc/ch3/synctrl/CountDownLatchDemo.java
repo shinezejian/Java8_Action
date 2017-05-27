@@ -6,7 +6,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * µ¹Êý¼ÆÊ±Æ÷
+ * å€’æ•°è®¡æ—¶å™¨
  * @author Geym
  *
  */
@@ -16,7 +16,7 @@ public class CountDownLatchDemo implements Runnable {
     @Override
     public void run() {
         try {
-            //Ä£Äâ¼ì²éÈÎÎñ
+            //æ¨¡æ‹Ÿæ£€æŸ¥ä»»åŠ¡
             Thread.sleep(new Random().nextInt(10)*1000);
             System.out.println("check complete");
             end.countDown();
@@ -29,9 +29,9 @@ public class CountDownLatchDemo implements Runnable {
         for(int i=0;i<10;i++){
             exec.submit(demo);
         }
-        //µÈ´ý¼ì²é
+        //ç­‰å¾…æ£€æŸ¥
         end.await();
-        //·¢Éä»ð¼ý
+        //å‘å°„ç«ç®­
         System.out.println("Fire!");
         exec.shutdown();
     }

@@ -10,7 +10,7 @@ public class SemapDemo implements Runnable{
     public void run() {
         try {
             semp.acquire();
-            //Ä£ÄâºÄÊ±²Ù×÷
+            //æ¨¡æ‹Ÿè€—æ—¶æ“ä½œ
             Thread.sleep(2000);
             System.out.println(Thread.currentThread().getId()+":done!");
             semp.release();
@@ -18,7 +18,7 @@ public class SemapDemo implements Runnable{
             e.printStackTrace();
         }
     }
-    
+
     public static void main(String[] args) {
         ExecutorService exec = Executors.newFixedThreadPool(20);
         final SemapDemo demo=new SemapDemo();
