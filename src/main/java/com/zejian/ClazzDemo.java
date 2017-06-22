@@ -1,5 +1,8 @@
 package com.zejian;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 /**
  * Created by zejian on 2017/4/30.
  * Blog : http://blog.csdn.net/javazejian [原文地址,请尊重原创]
@@ -7,7 +10,7 @@ package com.zejian;
 public class ClazzDemo {
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
         //没有泛型
         Class intClass = int.class;
 
@@ -24,6 +27,18 @@ public class ClazzDemo {
 
 //        Class<Number> numberClass=Integer.class;
         Class<? extends Number> clazz = Integer.class;
+
+//        ExtClassLoader
+//        AppClassLoader
+//        ClassLoader
+
+
+        // 注册驱动类
+        Class.forName("com.mysql.jdbc.Driver");
+        String url = "jdbc:mysql://localhost:3306/testdb";
+// 通过java库获取数据库连接
+        Connection conn = java.sql.DriverManager.getConnection(url, "name", "password");
     }
+
 
 }
