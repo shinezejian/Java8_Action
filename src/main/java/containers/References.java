@@ -27,8 +27,7 @@ public class References {
     // Or, choose size via the command line:
     if(args.length > 0)
       size = new Integer(args[0]);
-    LinkedList<SoftReference<VeryBig>> sa =
-      new LinkedList<SoftReference<VeryBig>>();
+    LinkedList<SoftReference<VeryBig>> sa = new LinkedList<SoftReference<VeryBig>>();
     for(int i = 0; i < size; i++) {
       sa.add(new SoftReference<VeryBig>(
         new VeryBig("Soft " + i), rq));
@@ -38,8 +37,7 @@ public class References {
     LinkedList<WeakReference<VeryBig>> wa =
       new LinkedList<WeakReference<VeryBig>>();
     for(int i = 0; i < size; i++) {
-      wa.add(new WeakReference<VeryBig>(
-        new VeryBig("Weak " + i), rq));
+      wa.add(new WeakReference<VeryBig>(new VeryBig("Weak " + i), rq));
       System.out.println("Just created: " + wa.getLast());
       checkQueue();
     }
@@ -56,5 +54,6 @@ public class References {
       System.out.println("Just created: " + pa.getLast());
       checkQueue();
     }
+    System.gc();
   }
 } /* (Execute to see output) *///:~

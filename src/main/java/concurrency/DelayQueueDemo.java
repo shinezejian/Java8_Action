@@ -18,8 +18,7 @@ class DelayedTask implements Runnable, Delayed {
     sequence.add(this);
   }
   public long getDelay(TimeUnit unit) {
-    return unit.convert(
-      trigger - System.nanoTime(), NANOSECONDS);
+    return unit.convert(trigger - System.nanoTime(), NANOSECONDS);
   }
   public int compareTo(Delayed arg) {
     DelayedTask that = (DelayedTask)arg;
@@ -29,8 +28,7 @@ class DelayedTask implements Runnable, Delayed {
   }
   public void run() { printnb(this + " "); }
   public String toString() {
-    return String.format("[%1$-4d]", delta) +
-      " Task " + id;
+    return String.format("[%1$-4d]", delta) + " Task " + id;
   }
   public String summary() {
     return "(" + id + ":" + delta + ")";
@@ -72,8 +70,7 @@ public class DelayQueueDemo {
   public static void main(String[] args) {
     Random rand = new Random(47);
     ExecutorService exec = Executors.newCachedThreadPool();
-    DelayQueue<DelayedTask> queue =
-      new DelayQueue<DelayedTask>();
+    DelayQueue<DelayedTask> queue = new DelayQueue<DelayedTask>();
     // Fill with tasks that have random delays:
     for(int i = 0; i < 20; i++)
       queue.put(new DelayedTask(rand.nextInt(5000)));

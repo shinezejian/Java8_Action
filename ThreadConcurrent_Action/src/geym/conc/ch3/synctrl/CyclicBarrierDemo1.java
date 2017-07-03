@@ -1,14 +1,11 @@
 
 package geym.conc.ch3.synctrl;
 
-import geym.conc.ch3.synctrl.CyclicBarrierDemo.BarrierRun;
-import geym.conc.ch3.synctrl.CyclicBarrierDemo.Soldier;
-
 import java.util.Random;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
-public class CyclicBarrierDemo2 {
+ class CyclicBarrierDemo2 {
     public static class Soldier implements Runnable {
 
         private String soldier;

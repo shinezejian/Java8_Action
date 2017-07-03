@@ -126,7 +126,7 @@ public class LockFreeVector<E> extends AbstractList<E> {
 
 	private AtomicReference<Descriptor<E>> descriptor;
 	private static final int zeroNumFirst = Integer
-			.numberOfLeadingZeros(FIRST_BUCKET_SIZE);;
+			.numberOfLeadingZeros(FIRST_BUCKET_SIZE);
 
 	/**
 	 * Constructor.

@@ -11,24 +11,36 @@ public class Utilities {
     print("'list' disjoint (Four)?: " +
       Collections.disjoint(list,
         Collections.singletonList("Four")));
+
     print("max: " + Collections.max(list));
     print("min: " + Collections.min(list));
+
+    System.out.println("sss:"+"three".compareTo("five"));
+
+
     print("max w/ comparator: " + Collections.max(list,
       String.CASE_INSENSITIVE_ORDER));
     print("min w/ comparator: " + Collections.min(list,
       String.CASE_INSENSITIVE_ORDER));
+
+
     List<String> sublist =
       Arrays.asList("Four five six".split(" "));
     print("indexOfSubList: " +
       Collections.indexOfSubList(list, sublist));
     print("lastIndexOfSubList: " +
       Collections.lastIndexOfSubList(list, sublist));
+
+
     Collections.replaceAll(list, "one", "Yo");
     print("replaceAll: " + list);
+
     Collections.reverse(list);
     print("reverse: " + list);
+
     Collections.rotate(list, 3);
     print("rotate: " + list);
+
     List<String> source =
       Arrays.asList("in the matrix".split(" "));
     Collections.copy(list, source);

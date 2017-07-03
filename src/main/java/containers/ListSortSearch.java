@@ -24,9 +24,11 @@ public class ListSortSearch {
     int index = Collections.binarySearch(list, key);
     print("Location of " + key + " is " + index +
       ", list.get(" + index + ") = " + list.get(index));
+    //忽略大小写的排序CASE_INSENSITIVE_ORDER
     Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
     print("Case-insensitive sorted: " + list);
     key = list.get(7);
+
     index = Collections.binarySearch(list, key,
       String.CASE_INSENSITIVE_ORDER);
     print("Location of " + key + " is " + index +

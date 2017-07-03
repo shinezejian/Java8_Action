@@ -55,6 +55,7 @@ public class Bits {
     b1023.set(1023);
     b1023.set(1024);
     print("set bit 1023: " + b1023);
+    HashMap MAP =new HashMap();
   }
 } /* Output:
 byte value: -107

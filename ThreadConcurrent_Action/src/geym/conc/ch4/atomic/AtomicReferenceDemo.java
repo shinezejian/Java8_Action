@@ -6,8 +6,8 @@ public class AtomicReferenceDemo {
 	static AtomicReference<Integer> money=new AtomicReference<Integer>();
 	public static void main(String[] args) {
 	    money.set(19);
-	    //Ä£Äâ¶à¸öÏß³ÌÍ¬Ê±¸üÐÂºóÌ¨Êý¾Ý¿â£¬ÎªÓÃ»§³äÖµ
-	    for(int i = 0 ; i < 3 ; i++) {              
+
+	    for(int i = 0 ; i < 3 ; i++) {
             new Thread() {  
                 public void run() {  
                     while(true){
@@ -15,11 +15,11 @@ public class AtomicReferenceDemo {
                             Integer m=money.get();
                             if(m<20){
                                 if(money.compareAndSet(m, m+20)){
-                                    System.out.println("Óà¶îÐ¡ÓÚ20Ôª£¬³äÖµ³É¹¦£¬Óà¶î:"+money.get()+"Ôª");
+                                    System.out.println("ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½20Ôªï¿½ï¿½ï¿½ï¿½Öµï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:"+money.get()+"Ôª");
                                     break;
                                 }
                             }else{
-                                //System.out.println("Óà¶î´óÓÚ20Ôª£¬ÎÞÐè³äÖµ");
+                                //System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½20Ôªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ");
                                 break ;
                             }
                         }
@@ -28,20 +28,20 @@ public class AtomicReferenceDemo {
             }.start();
         }
 	    
-	    //ÓÃ»§Ïû·ÑÏß³Ì£¬Ä£ÄâÏû·ÑÐÐÎª
+	    //ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì£ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª
 	    new Thread() {  
             public void run() {  
                 for(int i=0;i<100;i++){
                     while(true){
                         Integer m=money.get();
                         if(m>10){
-                            System.out.println("´óÓÚ10Ôª");
+                            System.out.println("ï¿½ï¿½ï¿½ï¿½10Ôª");
                             if(money.compareAndSet(m, m-10)){
-                                System.out.println("³É¹¦Ïû·Ñ10Ôª£¬Óà¶î:"+money.get());
+                                System.out.println("ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½10Ôªï¿½ï¿½ï¿½ï¿½ï¿½:"+money.get());
                                 break;
                             }
                         }else{
-                            System.out.println("Ã»ÓÐ×ã¹»µÄ½ð¶î");
+                            System.out.println("Ã»ï¿½ï¿½ï¿½ã¹»ï¿½Ä½ï¿½ï¿½");
                             break;
                         }
                     }

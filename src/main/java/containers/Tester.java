@@ -11,6 +11,7 @@ public class Tester<C> {
   protected C container;
   private String headline = "";
   private List<Test<C>> tests;
+  //stringField 和 numberField 产生格式化信息
   private static String stringField() {
     return "%" + fieldWidth + "s";
   }
@@ -42,6 +43,8 @@ public class Tester<C> {
       List<Test<C>> tests, TestParam[] paramList) {
     new Tester<C>(cntnr, tests, paramList).timedTest();
   }
+
+  //为每个测试打印头信息
   private void displayHeader() {
     // Calculate width and pad with '-':
     int width = fieldWidth * tests.size() + sizeWidth;

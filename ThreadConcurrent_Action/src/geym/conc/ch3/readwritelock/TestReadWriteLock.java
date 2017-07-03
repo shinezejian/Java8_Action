@@ -1,5 +1,7 @@
 package geym.conc.ch3.readwritelock;
 
+import org.junit.Test;
+
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -8,8 +10,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-
-import org.junit.Test;
 
 
 public class TestReadWriteLock {
@@ -139,10 +139,10 @@ public class TestReadWriteLock {
 		for(int i=0;i<TASK_COUNT;i++)
 			exe.submit(new ReadWriteThread());
 		
-		Thread.sleep(100000);
+//		Thread.sleep(100000);
 	}
 	
-	//@Test
+	@Test
 	public void testLock2() throws InterruptedException {
 	
 		CounterPoolExecutor exe=new CounterPoolExecutor(MAX_THREADS, MAX_THREADS,
@@ -155,7 +155,7 @@ public class TestReadWriteLock {
 		for(int i=0;i<TASK_COUNT;i++)
 			exe.submit(new ReadWriteThread2());
 		
-		Thread.sleep(100000);
+//		Thread.sleep(100000);
 	}
 
 }

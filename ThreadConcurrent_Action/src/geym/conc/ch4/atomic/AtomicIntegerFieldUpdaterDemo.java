@@ -3,13 +3,7 @@ package geym.conc.ch4.atomic;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 
-/**
- * 1. AtomicIntegerFieldUpdater有访问权限
- * 2. 必须是非静态字段
- * 3. 必须有volatile
- * @author Geym
- *
- */
+
 public class AtomicIntegerFieldUpdaterDemo {
     public static class Candidate{
         int id;
@@ -17,7 +11,7 @@ public class AtomicIntegerFieldUpdaterDemo {
     }
     public final static AtomicIntegerFieldUpdater<Candidate> scoreUpdater 
         = AtomicIntegerFieldUpdater.newUpdater(Candidate.class, "score");
-    //检查Updater是否工作正确
+
     public static AtomicInteger allScore=new AtomicInteger(0);
     public static void main(String[] args) throws InterruptedException {
         final Candidate stu=new Candidate();

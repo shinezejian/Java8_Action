@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Compiler_javac/Compiler_javac.iml" filepath="$PROJECT_DIR$/Compiler_javac/Compiler_javac.iml" />
       <module fileurl="file://$PROJECT_DIR$/Java8_Action.iml" filepath="$PROJECT_DIR$/Java8_Action.iml" />
       <module fileurl="file://$PROJECT_DIR$/ThreadConcurrent_Action/ThreadConcurrent_Action.iml" filepath="$PROJECT_DIR$/ThreadConcurrent_Action/ThreadConcurrent_Action.iml" />
     </modules>

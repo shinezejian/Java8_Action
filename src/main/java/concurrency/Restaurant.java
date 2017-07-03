@@ -1,7 +1,11 @@
 package concurrency;//: concurrency/Restaurant.java
 // The producer-consumer approach to task cooperation.
-import java.util.concurrent.*;
-import static net.mindview.util.Print.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
+import static net.mindview.util.Print.print;
+import static net.mindview.util.Print.printnb;
 
 class Meal {
   private final int orderNum;
@@ -24,6 +28,7 @@ class WaitPerson implements Runnable {
           restaurant.meal = null;
           restaurant.chef.notifyAll(); // Ready for another
         }
+//        TimeUnit.SECONDS.sleep(3);
       }
     } catch(InterruptedException e) {
       print("WaitPerson interrupted");
@@ -67,6 +72,7 @@ public class Restaurant {
   public Restaurant() {
     exec.execute(chef);
     exec.execute(waitPerson);
+
   }
   public static void main(String[] args) {
     new Restaurant();
