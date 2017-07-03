@@ -15,10 +15,10 @@ public class ABADemo {
 
     //初始化时需要传入一个初始值和初始时间
     static AtomicStampedReference<Integer> atomicStampedR =
-            new AtomicStampedReference<Integer>(200,0);
+            new AtomicStampedReference<Integer>(100,0);
 
     static AtomicMarkableReference<Integer> atMarkRef =
-            new AtomicMarkableReference<Integer>(200,false);
+            new AtomicMarkableReference<Integer>(100,false);
 
     static Thread t1 = new Thread(new Runnable() {
         @Override
@@ -80,11 +80,11 @@ public class ABADemo {
             boolean mark=atMarkRef.isMarked();
             System.out.println("mark:"+mark);
             //更新为200
-            atMarkRef.compareAndSet(100, 200,mark,!mark);
+            System.out.println("1:"+atMarkRef.compareAndSet(100, 200,mark,!mark));
             //更新为100
             boolean mark2=atMarkRef.isMarked();
             System.out.println("mark2:"+mark2);
-            atMarkRef.compareAndSet(200, 100,mark2,!mark2);
+            System.out.println("2:"+atMarkRef.compareAndSet(200, 100,mark2,!mark2));
         }
     });
 
@@ -115,7 +115,7 @@ public class ABADemo {
         /**
          * 输出结果:
          flag:true,newValue:500
-         sleep 前 t4 time:0
+         sleep 前 t4 time:1
          flag:false,newValue:200
          */
 
